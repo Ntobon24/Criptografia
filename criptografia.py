@@ -37,10 +37,41 @@ def encriptar_mensaje(mensaje, a, b):
     return mensaje_final
 
 
-mensaje = input("Ingrese el mensaje a encriptar: ")
+def desencriptar_mensaje(mensaje_encriptado, a, b):
+    mensaje_hex = mensaje_encriptado.split("&")[-1]
+    mensaje = bytes.fromhex(mensaje_hex).decode("utf-8")
+    mensaje_desencriptado = ""
 
-mensaje_final = encriptar_mensaje(mensaje, a, b)
+    for caracter in mensaje:
+        indice = caracteres.index(caracter)
+        inverso_a = pow(an, -1, 104)
+        indice_desencriptado = inverso_a * (indice - bn) % 104
+        caracter_desencriptado = caracteres[indice_desencriptado]
+        mensaje_desencriptado += caracter_desencriptado
 
-print(f"Mensaje encriptado: {mensaje_final}")
-print(f"random a: {a}")
-print(f"random b: {b}")
+    return mensaje_desencriptado
+
+
+while True:
+    opcion = input("¿Qué desea hacer? (1) Encriptar mensaje, (2) Desencriptar mensaje, (3) Salir: ")
+
+    if opcion == "1":
+        mensaje = input("Ingrese el mensaje a encriptar: ")
+        mensaje_final = encriptar_mensaje(mensaje, a, b)
+        print(f"Mensaje encriptado: {mensaje_final}")
+        print(f"numero random a: {a}")
+        print(f"numero random b: {b}")
+
+    elif opcion == "2":
+        mensaje_encriptado = input("Ingrese el mensaje encriptado: ")
+        an = int(input("Ingrese el valor de 'a': "))
+        bn = int(input("Ingrese el valor de 'b': "))
+        mensaje_desencriptado = desencriptar_mensaje(mensaje_encriptado, an, bn)
+        print(f"Mensaje desencriptado: {mensaje_desencriptado}")
+
+    elif opcion == "3":
+        print("¡Hasta luego!")
+        break
+
+    else:
+        print("Opción inválida. Intente de nuevo.")
