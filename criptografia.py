@@ -37,7 +37,7 @@ def encriptar_mensaje(mensaje, a, b):
     return mensaje_final
 
 
-def desencriptar_mensaje(mensaje_hex, a, b):
+def desencriptar_mensaje(mensaje_hex, an, bn):
     # Convertir el mensaje hexadecimal a texto
     mensaje = bytes.fromhex(mensaje_hex).decode("utf-8")
 
@@ -45,8 +45,8 @@ def desencriptar_mensaje(mensaje_hex, a, b):
     mensaje_desencriptado = ""
     for caracter in mensaje:
         indice = caracteres.index(caracter)
-        inverso_a = pow(a, -1, 104)
-        indice_desencriptado = inverso_a * (indice - b) % 104
+        inverso_a = pow(an, -1, 104)
+        indice_desencriptado = inverso_a * (indice - bn) % 104
         caracter_desencriptado = caracteres[indice_desencriptado]
         mensaje_desencriptado += caracter_desencriptado
 
@@ -66,9 +66,9 @@ while True:
 
     elif opcion == "2":
         mensaje_encriptado = input("Ingrese el mensaje encriptado: ")
-        a = int(input("Ingrese el numero random a: "))
-        b = int(input("Ingrese el numero random b: "))
-        mensaje_desencriptado = desencriptar_mensaje(mensaje_encriptado, a, b)
+        an = int(input("Ingrese el numero random a: "))
+        bn = int(input("Ingrese el numero random b: "))
+        mensaje_desencriptado = desencriptar_mensaje(mensaje_encriptado, an, bn)
         print(f"Mensaje desencriptado: {mensaje_desencriptado}")
 
     elif opcion == "3":
