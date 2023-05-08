@@ -53,7 +53,6 @@ def desencriptar_mensaje(mensaje_hex, a, b):
     return mensaje_desencriptado
 
 
-
 while True:
     print("Bienvenido a la maquina enigma")
     opcion = input("¿Qué desea hacer? (1) Encriptar mensaje, (2) Desencriptar mensaje, (3) Salir: ")
