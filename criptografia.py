@@ -38,10 +38,9 @@ def encriptar_mensaje(mensaje, a, b):
 
 
 def desencriptar_mensaje(mensaje_hex, an, bn):
-    # Convertir el mensaje hexadecimal a texto
+
     mensaje = bytes.fromhex(mensaje_hex).decode("utf-8")
 
-    # Desencriptar el mensaje
     mensaje_desencriptado = ""
     for caracter in mensaje:
         indice = caracteres.index(caracter)
